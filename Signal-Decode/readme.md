@@ -3,7 +3,7 @@
 ---
 
 ## 📨 Messages & Signals
-
+![Alt text](Signal-Decode/flowchart.png "Network Node Layout")
 ### 1. `ABSdata` (0xC9)
 
 | Signal        | Min | Max | Unit  | Type   | Description                |
