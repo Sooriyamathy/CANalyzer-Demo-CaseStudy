@@ -4,80 +4,60 @@
 ![Engine Speed](./Enginespeedvstime.png)
 
 ### Documented Events:
-| Time Range (s) | Observed RPM | Label Text       | Signal Characteristics             |
-|----------------|--------------|------------------|------------------------------------|
-| 0-10           | 1000-2000    | "Idle"           | Stable low-range operation         |
-| 10-15          | 3000→2000    | "Gear 2"         | 33% RPM drop over 5 seconds        |
-| 15-25          | 2000→4000    | "Gear 3"         | Linear RPM increase                |
-| 25-30          | 4000→3000    | "Gear 4"         | 25% RPM drop                       |
-| 45-60          | 600-900      | "Idle"           | Irregular fluctuations (±150 RPM)  |
+## 🔧 Dataset 1: Engine Speed, Car Speed, and Gear
 
+### 📈 Signal Summary
+
+| Parameter     | Min     | Max     | Avg      | Std Dev  |
+|---------------|---------|---------|----------|----------|
+| Engine Speed  | ~0 rpm  | ~6200 rpm | ~3100 rpm | ~1800 rpm |
+| Car Speed     | ~0 km/h | ~225 km/h | ~112 km/h | ~65 km/h  |
+| Gear Position | Idle (0) to Gear_5 (5) | N/A | Gear_3.1 (approx avg) | N/A |
+
+### ⏱ Cycle Count
+- **Total gear shifts (Idle to Gear_5 and back)**: ~12 shifts
+- **Complete up-down gear cycle duration**: ~75 seconds
+- **Dwell time per gear**: ~8–9 seconds
+
+### 🔍 Observations
+- Engine speed shows **consistent sawtooth** rise-fall pattern for each gear cycle.
+- Car speed increases in each cycle and peaks in **Gear_5 (~225 km/h)**.
+- During gear shifts, brief dips in both engine and car speed occur — a sign of **torque break**.
+- System returns to **Idle** state post cycle — suggesting simulation/test loop.
+
+### 📌 Your Inference
+> "The system behaves like a controlled gearshift test — rising engine load per gear, followed by downshifting. Very systematic and smooth. Could be part of a test rig or a shift quality calibration loop."
+
+---
 ## Wheel Speed vs Temperature Analysis
 ![Wheel Speed](./wheelspeedvstime.png)
 
-### Measured Data Points:
-| Time (s) | FL Wheel Speed (RPM) | Engine Temp (°C) | Graph Annotations       |
-|----------|-----------------------|-------------------|-------------------------|
-| 22       | 280                   | 125               | Vertical temperature spike |
-| 37       | 210                   | 128               | Sustained high temp      |
-| 53       | 0                     | 122               | "Idle Running" label    |
+## 🔧 Dataset 2: Wheel Speed FL, Engine Temperature, and Engine State
 
-## Signal Correlations
-1. **Thermal Events**:
-   - Both graphs show temperature exceeding 120°C at:
-     - 22 seconds (125°C)
-     - 37 seconds (128°C)
+### 📈 Signal Summary
 
-2. **Zero Speed Occurrence**:
-   - Wheel speed drops to 0 RPM at 53s while:
-     - Engine shows idle activity (600-900 RPM)
-     - Temperature remains at 122°C
+| Parameter           | Min      | Max      | Avg       | Std Dev  |
+|---------------------|----------|----------|-----------|----------|
+| Wheel Speed FL      | ~-40 rpm | ~270 rpm | ~85 rpm   | ~60 rpm  |
+| Engine Temperature  | ~20°C    | ~140°C   | ~85°C     | ~35°C    |
+| Engine State        | Binary   | Binary   | N/A       | N/A      |
 
-## Raw Signal Annotations
-### Engine Speed Graph:
-- Vertical axis labels: 
-  - Left: 0-7000 RPM (inconsistent scaling)
-  - Right: Gear positions (textual labels)
-- Horizontal axis: 0-75 seconds
+### 🔄 Cycle Summary
+- **Engine On-Off cycles**: ~10 cycles
+- **Avg "Running" period**: ~6–7 seconds
+- **Engine Temp Ramp**: Linear-like rise, **20°C → 140°C over 80s**
 
-### Wheel Speed Graph:
-- Dual Y-axis:
-  - Left: Wheel speed (0-300 RPM)
-  - Right: Engine temp (-40 to 140°C)
-- X-axis: 0-47 seconds (inconsistent with engine graph)
-## 📊 Signal Overview  
-### 1. Engine Speed vs Time (`Enginespeedvstime.png`)  
-**Key Observations:**  
-- **Gear Shifts**:  
-  - Gear transitions observed at:  
-    | Time (s) | Gear Shift | Engine Speed (RPM) |  
-    |----------|------------|--------------------|  
-    | ~10-15   | 2 → 3      | 3000 → 2000        |  
-    | ~25-30   | 3 → 4      | 4000 → 3000        |  
-  - RPM drops align with expected torque converter behavior during gear changes  
+### 🔍 Observations
+- Wheel speed fluctuates with **high-frequency noise**, indicating road interaction or test bench vibration.
+- Engine temperature increase is **smooth and exponential**, consistent with typical warm-up profile.
+- State toggles (`Idle ↔ Running`) align well with gear shifts in the first graph.
 
-- **Idle Behavior**:  
-  - Irregular idle RPM fluctuations (600-900 RPM) between 45-60s  
-  - Possible causes:  
-    - Throttle position sensor drift  
-    - Air intake leaks  
+### 📌 Your Inference
+> "Wheel speed is quite noisy, but peaks align with engine power bursts — expected during tests. The consistent engine temp rise supports a healthy cooling system. Idle/Run toggling might simulate a city-driving profile or eco mode testing."
 
-### 2. Wheel Speed vs Temperature (`wheelspeedvstime.png`)  
-**Critical Findings:**  
-- **FL Wheel Speed Anomalies**:  
-  ```python
-  # Example anomaly detection logic
-  if (wheelspeed_FL > 250 RPM) and (EngTemp > 120°C):
-      raise Warning("Overheat-induced wheel spin detected")
-  ```
-  - 3 incidents of wheel speed spikes (>250 RPM) correlate with engine temps >120°C
+---
 
-#### **Engine Temperature:**  
-- Normal operating range: 90-110°C  
-- Overheat events (>120°C) at:  
-  - 22s  
-  - 37s  
-  - 53s  
+
 
 🛠️ **Technical Insights**  
 **Signal Cross-Analysis Table**  
@@ -95,3 +75,73 @@
   Temp overshoots occur despite RPM reduction.  
 - **Wheel Speed Sensor Noise**:  
   False FL wheel readings during high-temp phase.
+
+## 🔧 Dataset 1: Engine Speed, Car Speed, and Gear
+
+### 📈 Signal Summary
+
+| Parameter     | Min     | Max     | Avg      | Std Dev  |
+|---------------|---------|---------|----------|----------|
+| Engine Speed  | ~0 rpm  | ~6200 rpm | ~3100 rpm | ~1800 rpm |
+| Car Speed     | ~0 km/h | ~225 km/h | ~112 km/h | ~65 km/h  |
+| Gear Position | Idle (0) to Gear_5 (5) | N/A | Gear_3.1 (approx avg) | N/A |
+
+### ⏱ Cycle Count
+- **Total gear shifts (Idle to Gear_5 and back)**: ~12 shifts
+- **Complete up-down gear cycle duration**: ~75 seconds
+- **Dwell time per gear**: ~8–9 seconds
+
+### 🔍 Observations
+- Engine speed shows **consistent sawtooth** rise-fall pattern for each gear cycle.
+- Car speed increases in each cycle and peaks in **Gear_5 (~225 km/h)**.
+- During gear shifts, brief dips in both engine and car speed occur — a sign of **torque break**.
+- System returns to **Idle** state post cycle — suggesting simulation/test loop.
+
+### 📌 Your Inference
+> "The system behaves like a controlled gearshift test — rising engine load per gear, followed by downshifting. Very systematic and smooth. Could be part of a test rig or a shift quality calibration loop."
+
+---
+
+## 🔧 Dataset 2: Wheel Speed FL, Engine Temperature, and Engine State
+
+### 📈 Signal Summary
+
+| Parameter           | Min      | Max      | Avg       | Std Dev  |
+|---------------------|----------|----------|-----------|----------|
+| Wheel Speed FL      | ~-40 rpm | ~270 rpm | ~85 rpm   | ~60 rpm  |
+| Engine Temperature  | ~20°C    | ~140°C   | ~85°C     | ~35°C    |
+| Engine State        | Binary   | Binary   | N/A       | N/A      |
+
+### 🔄 Cycle Summary
+- **Engine On-Off cycles**: ~10 cycles
+- **Avg "Running" period**: ~6–7 seconds
+- **Engine Temp Ramp**: Linear-like rise, **20°C → 140°C over 80s**
+
+### 🔍 Observations
+- Wheel speed fluctuates with **high-frequency noise**, indicating road interaction or test bench vibration.
+- Engine temperature increase is **smooth and exponential**, consistent with typical warm-up profile.
+- State toggles (`Idle ↔ Running`) align well with gear shifts in the first graph.
+
+### 📌 Your Inference
+> "Wheel speed is quite noisy, but peaks align with engine power bursts — expected during tests. The consistent engine temp rise supports a healthy cooling system. Idle/Run toggling might simulate a city-driving profile or eco mode testing."
+
+---
+
+## 📉 Combined Behavior Insight
+
+| Event Type        | Time Range (s) | Gear | Engine Speed | Car Speed | Engine State |
+|-------------------|----------------|------|---------------|------------|----------------|
+| Peak Acceleration | 33–37          | Gear_5 | ~6200 rpm     | ~225 km/h | Running        |
+| Max Cooling Load  | 0–80           | All  | Increasing     | Varies     | Running        |
+| Idle Recovery     | 75–84          | Idle | ~0 rpm         | ~0 km/h    | Idle           |
+
+---
+
+## ✅ Conclusion
+
+- **No anomalies** detected in either dataset.
+- Signals exhibit ideal response to gear changes, speed build-up, and thermal dynamics.
+- Suitable for use in **gear calibration**, **thermal profiling**, or **ECU performance validation**.
+
+---
+
