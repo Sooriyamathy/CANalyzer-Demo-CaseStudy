@@ -64,7 +64,7 @@
 
 ---
 
-## 🧩 Signal Reference List (for quick lookup)
+## Signal Reference List (for quick lookup)
 
 - **Vehicle Speed**: `CarSpeed`
 - **Engine RPM**: `EngSpeed`
@@ -76,7 +76,7 @@
 - **Wheel Speeds**: `WheelSpeedFL`, `WheelSpeedFR`, `WheelSpeedRL`, `WheelSpeedRR`
 
 ---
-### 🧩 What I Learned from the Demo Mode Data
+### What I Learned from the Demo Mode Data
 By analyzing the demo mode data for the vehicle system, I observed the interactions between various components of the vehicle, including the ABS system, engine control, gearbox information, and wheel speed data. Here’s a breakdown of key insights:
 
 - **System Interactions**: The signals work together to manage the vehicle's performance. For example, the engine speed and gear information help determine how the vehicle accelerates or decelerates, while wheel speed data is critical for ABS and traction control systems.
@@ -86,6 +86,6 @@ By analyzing the demo mode data for the vehicle system, I observed the interacti
 ### **Conclusion**
 The demo mode showcases how various vehicle components communicate in real-time to ensure optimal performance, safety, and efficiency. By observing these interactions, I gained valuable insights into vehicle system diagnostics and control mechanisms.
 
-### 🔜 **Next Step: Signal Analysis**
+### **Next Step: Signal Analysis**
 In the next step, I will analyze each signal in detail to understand its role within the vehicle system and its interactions with other signals. This analysis will help uncover deeper insights into the system's performance and functionality.
 
