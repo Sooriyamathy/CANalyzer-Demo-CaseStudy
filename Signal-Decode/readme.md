@@ -3,7 +3,8 @@
 ---
 
 ## 📨 Messages & Signals
-![Alt text](Signal-Decode/flowchart.png "Network Node Layout")
+### Network Node Layout
+![Network Node Layout](https://raw.githubusercontent.com/Sooriyamathy/CANalyzer-Demo-CaseStudy/main/Signal-Decode/flowchart.jpg)
 ### 1. `ABSdata` (0xC9)
 
 | Signal        | Min | Max | Unit  | Type   | Description                |
@@ -75,3 +76,16 @@
 - **Wheel Speeds**: `WheelSpeedFL`, `WheelSpeedFR`, `WheelSpeedRL`, `WheelSpeedRR`
 
 ---
+### 🧩 What I Learned from the Demo Mode Data
+By analyzing the demo mode data for the vehicle system, I observed the interactions between various components of the vehicle, including the ABS system, engine control, gearbox information, and wheel speed data. Here’s a breakdown of key insights:
+
+- **System Interactions**: The signals work together to manage the vehicle's performance. For example, the engine speed and gear information help determine how the vehicle accelerates or decelerates, while wheel speed data is critical for ABS and traction control systems.
+- **Diagnostic Data**: The ABS system provides diagnostic codes, which are helpful for troubleshooting and maintenance. The test signals in engine control further aid in system checks.
+- **Safety and Efficiency**: The vehicle’s systems are optimized for safety (through ABS and gear lock signals) and fuel efficiency (EcoMode and petrol level). The data highlights the focus on real-time adjustments based on vehicle status.
+
+### **Conclusion**
+The demo mode showcases how various vehicle components communicate in real-time to ensure optimal performance, safety, and efficiency. By observing these interactions, I gained valuable insights into vehicle system diagnostics and control mechanisms.
+
+### 🔜 **Next Step: Signal Analysis**
+In the next step, I will analyze each signal in detail to understand its role within the vehicle system and its interactions with other signals. This analysis will help uncover deeper insights into the system's performance and functionality.
+
