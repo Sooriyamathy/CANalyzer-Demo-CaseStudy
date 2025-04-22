@@ -4,7 +4,7 @@
 
 ## 📨 Messages & Signals
 ### Network Node Layout
-![Network Node Layout](https://raw.githubusercontent.com/Sooriyamathy/CANalyzer-Demo-CaseStudy/main/Signal-Decode/flowchart.jpg)
+![Network Node Layout](./flowchart.jpg)
 ### 1. `ABSdata` (0xC9)
 
 | Signal        | Min | Max | Unit  | Type   | Description                |
