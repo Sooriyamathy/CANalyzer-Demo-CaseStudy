@@ -1,7 +1,5 @@
 # Vehicle Signal Analysis Report  
 ---
-# Vehicle Signal Observation Report
-
 ## Engine Speed vs Time Analysis
 ![Engine Speed](./Enginespeedvstime.png)
 
