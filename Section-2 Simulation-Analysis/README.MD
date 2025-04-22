@@ -1,6 +1,4 @@
 # Vehicle Signal Analysis Report  
-**GitHub Document** | Signals: Engine Speed vs Time | Wheel Speed vs Time  
-
 ---
 # Vehicle Signal Observation Report
 
