@@ -1,8 +1,8 @@
 # Exporting Data from Graphics Window
+#### After simulation and signal visualization in the Graphics window, you might want to export data for post-analysis (e.g., in Excel, MATLAB, or Python).
+
 ![EXPORT](./EXPORT.png)
 ![EXPORT_WINDOW](./EXPORT_WINDOW.png)
-- **Description**: After simulation and signal visualization in the Graphics window, you might want to export data for post-analysis (e.g., in Excel, MATLAB, or Python).
-
 ### Steps:
 1. Right-click inside the **Graphics Window**.
 2. Select `Export > CSV...`
